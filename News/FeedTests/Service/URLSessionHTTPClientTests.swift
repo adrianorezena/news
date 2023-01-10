@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import News
+@testable import Feed
 
 final class URLSessionHTTPClientTests: XCTestCase {
     
