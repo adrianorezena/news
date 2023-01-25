@@ -15,6 +15,30 @@ final class URLSessionHTTPClientTests: XCTestCase {
         
         URLProtocolStub.removeStub()
     }
+
+    func test_algo() {
+        let configuration = URLSessionConfiguration.default
+        let session = URLSession(configuration: configuration)
+        let client: URLSessionHTTPClient = URLSessionHTTPClient(session: session)
+        client.showDebugLog = true
+        let url: URL = URL(string: "https://oesteemfoco.com.br/api/noticias?chave=c2d8b8a4631b413001e9d927568eb310d476596d")!
+        
+        let exp: XCTestExpectation = expectation(description: "Wait for request")
+        
+        _ = client.execute(url: url) { result in
+            switch result {
+            case let .success(response):
+                debugPrint(response)
+                
+            default:
+                XCTFail("Expected success, got \(result) instead")
+            }
+            
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 5)
+    }
     
     func test_getFromURL_failsOnRequestError() {
         let client: URLSessionHTTPClient = makeClient()

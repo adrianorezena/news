@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol HTTPClientTask {
+public protocol HTTPClientTask {
     func cancel()
 }
 
-protocol HTTPClient {
+public protocol HTTPClient {
     typealias HTTPClientResult = Swift.Result<(Data, HTTPURLResponse), Error>
     
     @discardableResult
