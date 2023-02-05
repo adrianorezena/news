@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		802D45052976B12800DF7E47 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802D45042976B12800DF7E47 /* FeedService.swift */; };
 		802D45082976B15100DF7E47 /* FeedServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802D45072976B15100DF7E47 /* FeedServiceTests.swift */; };
+		8062CA10298FD0EA00AD6A90 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A265772966E70200BA89A7 /* URLSessionHTTPClientTests.swift */; };
+		8062CA11298FD10500AD6A90 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A265922967A8C700BA89A7 /* URLProtocolStub.swift */; };
 		807C1397296D78C20097A182 /* Feed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 807C138F296D78C20097A182 /* Feed.framework */; };
 		807C139F296D78C20097A182 /* Feed.h in Headers */ = {isa = PBXBuildFile; fileRef = 807C1391296D78C20097A182 /* Feed.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		807C13A3296D78C20097A182 /* Feed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 807C138F296D78C20097A182 /* Feed.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		807C13AB296D78D90097A182 /* URLSessionHTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A265772966E70200BA89A7 /* URLSessionHTTPClientTests.swift */; };
-		807C13AC296D78D90097A182 /* URLProtocolStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A265922967A8C700BA89A7 /* URLProtocolStub.swift */; };
 		807C13AD296D78D90097A182 /* NewsTestsHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A265902967A51000BA89A7 /* NewsTestsHelpers.swift */; };
 		807C13B0296D791C0097A182 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004A67C2969F624008950C6 /* URLSessionHTTPClient.swift */; };
 		807C13B1296D791C0097A182 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8004A67A2969F5C9008950C6 /* HTTPClient.swift */; };
@@ -362,7 +362,6 @@
 					};
 					807C1395296D78C20097A182 = {
 						CreatedOnToolsVersion = 14.2;
-						TestTargetID = 80A2655C2966E70100BA89A7;
 					};
 					80A2655C2966E70100BA89A7 = {
 						CreatedOnToolsVersion = 14.2;
@@ -446,9 +445,9 @@
 			files = (
 				807C13AD296D78D90097A182 /* NewsTestsHelpers.swift in Sources */,
 				802D45082976B15100DF7E47 /* FeedServiceTests.swift in Sources */,
-				807C13AC296D78D90097A182 /* URLProtocolStub.swift in Sources */,
+				8062CA10298FD0EA00AD6A90 /* URLSessionHTTPClientTests.swift in Sources */,
 				80EE15F629814F5200A96FE2 /* NewsMapperTests.swift in Sources */,
-				807C13AB296D78D90097A182 /* URLSessionHTTPClientTests.swift in Sources */,
+				8062CA11298FD10500AD6A90 /* URLProtocolStub.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,9 +572,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.rezena.FeedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/News.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/News";
 			};
 			name = Debug;
 		};
@@ -592,9 +591,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = br.com.rezena.FeedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/News.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/News";
 			};
 			name = Release;
 		};

@@ -26,10 +26,21 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      codeCoverageEnabled = "YES"
+      onlyGenerateCoverageForSpecifiedTargets = "YES">
+      <CodeCoverageTargets>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "807C138E296D78C20097A182"
+            BuildableName = "Feed.framework"
+            BlueprintName = "Feed"
+            ReferencedContainer = "container:News.xcodeproj">
+         </BuildableReference>
+      </CodeCoverageTargets>
       <Testables>
          <TestableReference
-            skipped = "NO"
+            skipped = "YES"
             testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -38,20 +49,6 @@
                BlueprintName = "FeedTests"
                ReferencedContainer = "container:News.xcodeproj">
             </BuildableReference>
-            <SelectedTests>
-               <Test
-                  Identifier = "URLSessionHTTPClientTests/test_cancelGetFromURLTask_cancelsURLRequest()">
-               </Test>
-               <Test
-                  Identifier = "URLSessionHTTPClientTests/test_getFromURL_failsOnRequestError()">
-               </Test>
-               <Test
-                  Identifier = "URLSessionHTTPClientTests/test_getFromURL_succeedsOnHTTPURLResponseWithData()">
-               </Test>
-               <Test
-                  Identifier = "URLSessionHTTPClientTests/test_getFromURL_succeedsWithEmptyDataOnHTTPURLResponseWithNilData()">
-               </Test>
-            </SelectedTests>
          </TestableReference>
       </Testables>
    </TestAction>

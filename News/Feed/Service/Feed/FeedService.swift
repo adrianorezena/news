@@ -11,23 +11,23 @@ public struct FeedService {
 
     public enum FeedAPI {
         case lastNews
-        case lastNewsByType(Int)
-        case lastNewsByPage(Int)
-        case lastNewsByTypeAndPage(type: Int, page: Int)
+//        case lastNewsByType(Int)
+//        case lastNewsByPage(Int)
+//        case lastNewsByTypeAndPage(type: Int, page: Int)
         
         var path: String {
             switch self {
             case .lastNews:
                 return baseURL + "/noticias?chave=" + BASE_KEY
                 
-            case let .lastNewsByType(type):
-                return "\(baseURL)/noticias?chave=\(BASE_KEY)&editoria=\(type)"
-                
-            case let .lastNewsByPage(page):
-                return "\(baseURL)/noticias?chave=\(BASE_KEY)&pagina=\(page)"
-                
-            case let .lastNewsByTypeAndPage(type, page):
-                return "\(baseURL)/noticias?chave=\(BASE_KEY)&pagina=\(page)&editoria=\(type)"
+//            case let .lastNewsByType(type):
+//                return "\(baseURL)/noticias?chave=\(BASE_KEY)&editoria=\(type)"
+//                
+//            case let .lastNewsByPage(page):
+//                return "\(baseURL)/noticias?chave=\(BASE_KEY)&pagina=\(page)"
+//                
+//            case let .lastNewsByTypeAndPage(type, page):
+//                return "\(baseURL)/noticias?chave=\(BASE_KEY)&pagina=\(page)&editoria=\(type)"
             }
         }
         
