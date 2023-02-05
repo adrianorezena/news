@@ -29,6 +29,14 @@ final class NewsMapperTests: XCTestCase {
         XCTAssertEqual(news, [news1.model, news2.model])
     }
     
+    func test_map_returnsDefaultEmptyArray() throws {
+        let newsJson: [String: Any] = ["erro": 0]
+        let data: Data = try JSONSerialization.data(withJSONObject: newsJson)
+        let news: [News] = try NewsMapper.map(data)
+        
+        XCTAssertEqual(news, [])
+    }
+    
     private func makeNews(id: String) -> (model: News, json: [String: Any]) {
         let news: News = News(
             id: id,
