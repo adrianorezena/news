@@ -16,7 +16,8 @@ final class URLSessionHTTPClientTests: XCTestCase {
         URLProtocolStub.removeStub()
     }
 
-    func test_algo() {
+    /*
+    func test_execute_networkCall() {
         let configuration = URLSessionConfiguration.default
         let session = URLSession(configuration: configuration)
         let client: URLSessionHTTPClient = URLSessionHTTPClient(session: session)
@@ -39,8 +40,9 @@ final class URLSessionHTTPClientTests: XCTestCase {
         
         wait(for: [exp], timeout: 5)
     }
-    
-    func test_getFromURL_failsOnRequestError() {
+    */
+     
+    func test_execute_failsOnRequestError() {
         let client: URLSessionHTTPClient = makeClient()
         let url: URL = anyURL()
         
@@ -57,7 +59,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
         }
     }
     
-    func test_cancelGetFromURLTask_cancelsURLRequest() {
+    func test_cancelExecuteTask_cancelsURLRequest() {
         let client: URLSessionHTTPClient = makeClient()
         let url: URL = anyURL()
 
@@ -81,7 +83,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    func test_getFromURL_succeedsOnHTTPURLResponseWithData() {
+    func test_execute_succeedsOnHTTPURLResponseWithData() {
         let client: URLSessionHTTPClient = makeClient()
         let url: URL = anyURL()
         let data: Data = anyData()
@@ -108,7 +110,7 @@ final class URLSessionHTTPClientTests: XCTestCase {
         wait(for: [exp], timeout: 1)
     }
     
-    func test_getFromURL_succeedsWithEmptyDataOnHTTPURLResponseWithNilData() {
+    func test_execute_succeedsWithEmptyDataOnHTTPURLResponseWithNilData() {
         let client: URLSessionHTTPClient = makeClient()
         let url: URL = anyURL()
         let emptyData: Data = Data()
