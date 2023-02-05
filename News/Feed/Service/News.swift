@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct News: Decodable, Hashable, Identifiable {
-    let id: String
-    let title: String
-    let date: String
-    let picture: String
-    let categoryID: String
-    let categoryName: String
-    let authorName: String
-    let url: String
-    let subtitle: String
-    let cityID: String?
-    let cityName: String
+public struct News: Decodable, Hashable, Identifiable {
+    public let id: String
+    public let title: String
+    public let date: String
+    public let picture: String
+    public let categoryID: String
+    public let categoryName: String
+    public let authorName: String
+    public let url: String
+    public let subtitle: String
+    public let cityID: String?
+    public let cityName: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -34,7 +34,7 @@ struct News: Decodable, Hashable, Identifiable {
         case cityName = "municipio_nome"
     }
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.title = try container.decode(String.self, forKey: .title)

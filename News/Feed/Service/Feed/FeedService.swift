@@ -43,7 +43,7 @@ public struct FeedService {
     
     private let client: HTTPClient
     
-    public func getLastNews() async throws -> Result<[String], Error> {
+    public func getLastNews() async throws -> Result<[News], Error> {
         guard let url: URL = URL(string: FeedAPI.lastNews.path) else {
             return .failure(NSError(domain: "any", code: 0))
         }
@@ -52,7 +52,12 @@ public struct FeedService {
             client.execute(url: url) { result in
                 switch result {
                 case let .success((data, httpURLResponse)):
-                    continuation.resume(returning: .success([""]))
+                    do {
+                        let news = try NewsMapper.map(data)
+                        continuation.resume(returning: .success(news))
+                    } catch {
+                        continuation.resume(throwing: error)
+                    }
 
                 case let .failure(error):
                     continuation.resume(throwing: error)
