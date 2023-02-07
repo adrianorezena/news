@@ -22,10 +22,10 @@ public struct FeedService {
                 
 //            case let .lastNewsByType(type):
 //                return "\(baseURL)/noticias?chave=\(BASE_KEY)&editoria=\(type)"
-//                
+//
 //            case let .lastNewsByPage(page):
 //                return "\(baseURL)/noticias?chave=\(BASE_KEY)&pagina=\(page)"
-//                
+//
 //            case let .lastNewsByTypeAndPage(type, page):
 //                return "\(baseURL)/noticias?chave=\(BASE_KEY)&pagina=\(page)&editoria=\(type)"
             }
@@ -51,7 +51,7 @@ public struct FeedService {
         return try await withCheckedThrowingContinuation { continuation in
             client.execute(url: url) { result in
                 switch result {
-                case let .success((data, httpURLResponse)):
+                case let .success((data, _)):
                     do {
                         let news = try NewsMapper.map(data)
                         continuation.resume(returning: .success(news))

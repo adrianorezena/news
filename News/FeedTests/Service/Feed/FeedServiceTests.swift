@@ -15,8 +15,23 @@ final class FeedServiceTests: XCTestCase {
     let serviceErrorResponse: String = "{\"erro\":1,\"msg\":\"Chave inv\\u00e1lida ou faltando!\"}"
     
     
-    func test_getLastNews_pathIsCorrect() {
+    func test_lastNews_pathIsCorrect() {
         XCTAssertEqual(FeedService.FeedAPI.lastNews.path, "https://oesteemfoco.com.br/api/noticias?chave=c2d8b8a4631b413001e9d927568eb310d476596d")
+    }
+    
+    func test_getLastNews_shouldThrowWithInvalidURL() async throws {
+        let client: URLSessionHTTPClient = makeClient()
+        URLProtocolStub.stub(data: nil, response: nil, error: anyNSError())
+        
+        let sut: FeedService = FeedService(client: client)
+
+        do {
+            // XCTAssertThrowsError is not accepting async code yet
+            _ = try await sut.getLastNews()
+            XCTFail("Expected fail, but succeeded")
+        } catch {
+            XCTAssertEqual(anyNSError().localizedDescription, error.localizedDescription)
+        }
     }
     
 //    func test_getLastNews_successfullyReturnsLastNews_() async throws {

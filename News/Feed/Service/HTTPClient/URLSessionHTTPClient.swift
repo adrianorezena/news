@@ -43,18 +43,14 @@ final class URLSessionHTTPClient: HTTPClient {
         }
         
         task.resume()
-        return task
-    }
-    
-    private func logRequest() {
-        
+        return URLSessionTaskWrapper(wrapped: task)
     }
     
     private func logResponse(data: Data?, response: URLResponse?, error: Error?) {
         log("⬇️ ========== RESPONSE ==========")
         
         if let data: Data = data {
-            log("⬇️ data: \(String(data: data, encoding: .utf8))")
+            log("⬇️ data: \(String(describing: String(data: data, encoding: .utf8)))")
         }
         
         if let response: HTTPURLResponse = response as? HTTPURLResponse {
@@ -70,6 +66,6 @@ final class URLSessionHTTPClient: HTTPClient {
     private func log(_ text: String) {
         guard showDebugLog else { return }
         
-        print(text)
+        debugPrint(text)
     }
 }

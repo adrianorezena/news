@@ -59,7 +59,28 @@ final class URLSessionHTTPClientTests: XCTestCase {
         }
     }
     
-    func test_cancelExecuteTask_cancelsURLRequest() {
+    func test_execute_failsOnUnexpectedError() {
+        let client: URLSessionHTTPClient = makeClient()
+        let url: URL = anyURL()
+        URLProtocolStub.stub(data: nil, response: nil, error: nil)
+        
+        let exp: XCTestExpectation = expectation(description: "Wait for request")
+        
+        _ = client.execute(url: url) { result in
+            switch result {
+            case let .failure(error):
+                XCTAssertNotNil(error)
+            default:
+                XCTFail("Expected failure, got \(result) instead")
+            }
+            
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func test_cancel_cancelsURLRequest() {
         let client: URLSessionHTTPClient = makeClient()
         let url: URL = anyURL()
 
