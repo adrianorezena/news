@@ -14,11 +14,16 @@ final class FeedServiceTests: XCTestCase {
     
     let serviceErrorResponse: String = "{\"erro\":1,\"msg\":\"Chave inv\\u00e1lida ou faltando!\"}"
     
-    
     func test_lastNews_pathIsCorrect() {
         XCTAssertEqual(FeedService.FeedAPI.lastNews.path, "https://oesteemfoco.com.br/api/noticias?chave=c2d8b8a4631b413001e9d927568eb310d476596d")
     }
     
+    func test_lastNewsByType_pathIsCorrect() {
+        let type: Int = 1
+        XCTAssertEqual(FeedService.FeedAPI.lastNewsByType(type).path, "https://oesteemfoco.com.br/api/noticias?chave=c2d8b8a4631b413001e9d927568eb310d476596d&editoria=\(type)")
+    }
+    
+    // MARK: - lastNews
     func test_getLastNews_shouldThrowWithInvalidURL() async throws {
         let client: URLSessionHTTPClient = makeClient()
         URLProtocolStub.stub(data: nil, response: nil, error: anyNSError())
@@ -75,6 +80,45 @@ final class FeedServiceTests: XCTestCase {
         do {
             // XCTAssertThrowsError is not accepting async code yet
             _ = try await sut.getLastNews()
+            XCTFail("Expected fail, but succeeded")
+        } catch NewsMapper.Error.failedResponse(let errorMessage) {
+            XCTAssertEqual(errorMessage.code, 1)
+            XCTAssertEqual(errorMessage.message, "Chave inválida ou faltando!")
+        } catch {
+            XCTFail("Expected NewsMapper.Error.failedResponse")
+        }
+    }
+    
+    // MARK: - lastNewsByType
+    func test_getLastNewsByType_successfullyReturnsLastNews() async throws {
+        let client: URLSessionHTTPClient = makeClient()
+        let data: Data = Data(serviceSuccessfulResponse.utf8)
+        let successResponse: HTTPURLResponse = HTTPURLResponse(url: anyURL(), statusCode: 200, httpVersion: nil, headerFields: nil)!
+        URLProtocolStub.stub(data: data, response: successResponse, error: nil)
+
+        let sut: FeedService = FeedService(client: client)
+        let result = try await sut.getLastNewsByType(1)
+
+        switch result {
+        case let .success(dataResponse):
+            XCTAssertEqual(dataResponse.count, 20)
+
+        default:
+            XCTFail("Expected success, got \(result) instead")
+        }
+    }
+    
+    func test_getLastNewsByType_shouldThrowWhenReturningErrorResponse() async throws {
+        let client: URLSessionHTTPClient = makeClient()
+        let data: Data = Data(serviceErrorResponse.utf8)
+        let successResponse: HTTPURLResponse = HTTPURLResponse(url: anyURL(), statusCode: 200, httpVersion: nil, headerFields: nil)!
+        URLProtocolStub.stub(data: data, response: successResponse, error: nil)
+
+        let sut: FeedService = FeedService(client: client)
+
+        do {
+            // XCTAssertThrowsError is not accepting async code yet
+            _ = try await sut.getLastNewsByType(1)
             XCTFail("Expected fail, but succeeded")
         } catch NewsMapper.Error.failedResponse(let errorMessage) {
             XCTAssertEqual(errorMessage.code, 1)
